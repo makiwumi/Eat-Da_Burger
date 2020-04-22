@@ -1,4 +1,4 @@
-const orms = require("./connection");
+const connection = require("./connection");
 
 const orm = {
     selectWhere: (tableInput, colToSearch, valOfCol) => {
