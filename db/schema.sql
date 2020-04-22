@@ -6,7 +6,9 @@ To run this file, we do the following in our Terminal:
 
 2. Get into our mysql console. (mysql -u root -p)
 
-3. Run "source schema.sql"
+3. Run "source schema.sql" & source seeds.sql
+
+4. Quit Mysql by typing \q
 
 */
 
