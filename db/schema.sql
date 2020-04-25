@@ -1,3 +1,19 @@
+-- Drops the day_planner_db if it already exists --
+DROP DATABASE IF EXISTS burgers_db;
+
+-- Create the database day_planner_db and specified it for use.
+CREATE DATABASE burgers_db;
+
+USE burgers_db;
+
+-- Create the table plans.
+CREATE TABLE burgers (
+  id int NOT NULL AUTO_INCREMENT,
+  burgername varchar(255) NOT NULL,
+  devoured BOOLEAN DEFAULT false,
+  PRIMARY KEY (id)
+);
+
 /*
 
 To run this file, we do the following in our Terminal:
@@ -11,19 +27,3 @@ To run this file, we do the following in our Terminal:
 4. Quit Mysql by typing \q
 
 */
-
--- Drops the day_planner_db if it already exists --
-DROP DATABASE IF EXISTS burgers_db;
-
--- Create the database day_planner_db and specified it for use.
-CREATE DATABASE burgers_db;
-
-USE burgers_db;
-
--- Create the table plans.
-CREATE TABLE burgers (
-  id int NOT NULL AUTO_INCREMENT,
-  burgername varchar(255) NOT NULL,
-  devoured BOOLEAN DEFAULT FALSE,
-  PRIMARY KEY (id)
-);
