@@ -1,24 +1,36 @@
+//Import mysql connection
 const connection = require("./connection");
 
+//ORM to select/insert burger/update burger
 const orm = {
-    selectWhere: (tableInput, colToSearch, valOfCol) => {
-      let queryString = "SELECT * FROM ?? WHERE ?? = ?";
-      // SELECT * from pets WHERE animal_name == "Rachel"
-      connection.query(queryString, [tableInput, colToSearch, valOfCol], (error, result) => {
+    selectAll: (burInfo) => {
+      let queryString = "SELECT * FROM burgers";
+      // SELECT * from table made in burgers_db (burgers)
+      connection.query(queryString, (error, result) => {
         if (error) throw error;
-          // console.log(result);
+          // console.log error;
+          console.log("mySQL select query error:" + error);
+
+          //return result
+          console.log("Data selection was successfull");
+          burInfo(result);
       });
     },
-    selectAndOrder: (whatToSelect, table, orderCol) => {
-      let queryString = "SELECT ?? FROM ?? ORDER BY ?? DESC";
-      // SELECT animal_name FROM pets ORDER BY price DESC;
+    insertOne: (burgName, burInfo) => {
+      let queryString = "INSERT INTO burgers (burgename, devoured) VALUES ('" + burgName + "', false)";
+      // INSERT burgername to table made in burgers_db (burgers)
       console.log(queryString);
-      connection.query(queryString, [whatToSelect, table, orderCol], (error, result) => {
+      connection.query(queryString, (error, result) => {
         if (error) throw error;
-        // console.log(result);
+        /// console.log error;
+        console.log("mySQL select query error:" + error);
+
+        //return result
+        console.log("A wild burger has appeared: " + burgName + "!");
+        burInfo(result);
       });
     },
-    findWhoHasMost: (tableOneCol, tableTwoForeignKey, tableOne, tableTwo) => {
+    updateOne: () => {
       let queryString =
         "SELECT ??, COUNT(??) AS count FROM ?? LEFT JOIN ?? ON ??.??= ??.id GROUP BY ?? ORDER BY count DESC LIMIT 1";
         // SELECT tableOneCol, COUNT(tableOneCol) as count from tableOne LEFT JOIN tableTwo ON tableTwo.tableTwoForeignKey = tableOne.id GROUP BY tableOneCol . . 
