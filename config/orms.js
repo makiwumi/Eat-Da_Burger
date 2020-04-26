@@ -30,19 +30,19 @@ const orm = {
         burInfo(result);
       });
     },
-    updateOne: () => {
+    updateOne: (burgStatus,burgerId, burInfo) => {
       let queryString =
-        "SELECT ??, COUNT(??) AS count FROM ?? LEFT JOIN ?? ON ??.??= ??.id GROUP BY ?? ORDER BY count DESC LIMIT 1";
-        // SELECT tableOneCol, COUNT(tableOneCol) as count from tableOne LEFT JOIN tableTwo ON tableTwo.tableTwoForeignKey = tableOne.id GROUP BY tableOneCol . . 
-        // SELECT buyer_name, count(buyer_name) as count from buyers LEFT JOIN pets on pets.buyer_id = buyers.id GROUP BY buyer_name ORDER BY count DESC LIMIT 1;
-        connection.query(
-        queryString,
-        [tableOneCol, tableOneCol, tableOne, tableTwo, tableTwo, tableTwoForeignKey, tableOne, tableOneCol],
-        (error, result) => {
+        "UPDATE burgers SET devoured = " + burgStatus + " WHERE id = " + burgerId;
+        // Update burgers when burger is devoured
+        
+        connection.query(queryString, (error, result) => {
           if (error) throw error;
-          console.log(result);
-        }
-      );
+          /// console.log error;
+          console.log("mySQL select query error:" + error);
+          //return result
+          console.log("Your burger has been updated");
+          burInfo(result);
+        });
     }
   };
   
