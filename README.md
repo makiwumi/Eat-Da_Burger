@@ -3,7 +3,7 @@
 ## Description
             
 An app that allows you to add your favorite burgers and devour them!
-Access app: https://burger-galore.herokuapp.com/
+* View application: https://burger-galore.herokuapp.com/
             
 ## Table of Contents
             
