@@ -8,9 +8,9 @@ USE burgers_db;
 
 -- Create the table plans.
 CREATE TABLE burgers (
-  id int(10) NOT NULL AUTO_INCREMENT,
-  burgername varchar(255) NOT NULL,
-  devoured BOOLEAN DEFAULT false,
+  id INT NOT NULL AUTO_INCREMENT,
+  burger_name varchar(50) NOT NULL,
+  devoured BOOLEAN NOT NULL,
   PRIMARY KEY (id)
 );
 

@@ -1,49 +1,91 @@
-//Import mysql connection
 const connection = require("./connection");
 
-//ORM to select/insert burger/update burger
-const orm = {
-    selectAll: (burInfo) => {
-      let queryString = "SELECT * FROM burgers";
-      // SELECT * from table made in burgers_db (burgers)
-      connection.query(queryString, (error, result) => {
-        if (error) throw error;
-          // console.log error;
-          console.log("mySQL select query error:" + error);
+function printQuestionMarks(num) {
+  var arr = [];
 
-          //return result
-          console.log("Data selection was successfull");
-          burInfo(result);
-      });
-    },
-    insertOne: (burgName, burInfo) => {
-      let queryString = "INSERT INTO burgers (burgename, devoured) VALUES ('" + burgName + "', false)";
-      // INSERT burgername to table made in burgers_db (burgers)
-      console.log(queryString);
-      connection.query(queryString, (error, result) => {
-        if (error) throw error;
-        /// console.log error;
-        console.log("mySQL select query error:" + error);
+  for (var i = 0; i < num; i++) {
+    arr.push("?");
+  }
 
-        //return result
-        console.log("A wild burger has appeared: " + burgName + "!");
-        burInfo(result);
-      });
-    },
-    updateOne: (burgStatus,burgerId, burInfo) => {
-      let queryString =
-        "UPDATE burgers SET devoured = " + burgStatus + " WHERE id = " + burgerId;
-        // Update burgers when burger is devoured
-        
-        connection.query(queryString, (error, result) => {
-          if (error) throw error;
-          /// console.log error;
-          console.log("mySQL select query error:" + error);
-          //return result
-          console.log("Your burger has been updated");
-          burInfo(result);
-        });
-    }
-  };
+  return arr.toString();
+}
   
-  module.exports = orm;
+
+function objToSql(ob) {
+  var arr = [];
+
+  
+  for (var key in ob) {
+    var value = ob[key];
+  
+    if (Object.hasOwnProperty.call(ob, key)) {
+      
+      if (typeof value === "string" && value.indexOf(" ") >= 0) {
+        value = "'" + value + "'";
+      }
+    
+      arr.push(key + "=" + value);
+    }
+  }
+  
+ 
+  return arr.toString();
+}
+  
+
+let orm = {
+    // selectAll()
+    selectAll: function(table,callback) {
+        let query = "SELECT * FROM ??"
+        connection.query(query,[table], (error, result) => {
+            if (error) {
+                throw error;
+            }
+            callback(result);
+        })
+   
+    },
+
+    //insertOne()
+    insertOne: function(table,cols,vals,callback) {
+        let query = "INSERT INTO " + table;
+
+        query += " (";
+        query += cols.toString();
+        query += ") ";
+        query += "VALUES (";
+        query += printQuestionMarks(vals.length);
+        query += ") ";
+
+        console.log(query);
+
+        connection.query(query, vals, (error,result) => {
+            if (error) {
+                throw error;
+            }
+            callback(result);
+        })
+    },
+
+    // updateOne()
+    updateOne: function(table, objColVals, condition, callback) {
+        let query = "UPDATE " + table;
+
+        query += " SET ";
+        query += objToSql(objColVals);
+        query += " WHERE ";
+        query += condition;
+    
+        console.log(query);
+        connection.query(query, function(error, result) {
+          if (error) {
+            throw error;
+          }
+    
+          callback(result);
+        });
+      }
+
+}
+//export ORM object
+module.exports = orm;
