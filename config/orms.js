@@ -1,9 +1,9 @@
 const connection = require("./connection");
 
 function printQuestionMarks(num) {
-  var arr = [];
+  let arr = [];
 
-  for (var i = 0; i < num; i++) {
+  for (let i = 0; i < num; i++) {
     arr.push("?");
   }
 
@@ -12,11 +12,10 @@ function printQuestionMarks(num) {
   
 
 function objToSql(ob) {
-  var arr = [];
+  let arr = [];
 
-  
-  for (var key in ob) {
-    var value = ob[key];
+  for (let key in ob) {
+    let value = ob[key];
   
     if (Object.hasOwnProperty.call(ob, key)) {
       
@@ -84,8 +83,8 @@ let orm = {
     
           callback(result);
         });
-    }
-    // Delete a burger from the db
+    },
+    // DeleteOne
     deleteOne: function(table, condition, cb) {
       let queryString = "DELETE FROM " + table;
       queryString += " WHERE ";
