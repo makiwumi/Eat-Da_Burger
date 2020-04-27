@@ -22,7 +22,7 @@ font-family: 'Mountains of Christmas', cursive;
 	display: block;
   	margin-left: auto;
   	margin-right: auto;
-  	width: 50%;
+  	width: 25%;
 }
 
 .header > h1 {
@@ -34,7 +34,12 @@ font-family: 'Mountains of Christmas', cursive;
 	font-family: 'Jua', sans-serif;
 	text-align: center;
 }
-
+label {
+	font-family: 'Jua', sans-serif;
+}
+i {
+	color:black;
+}
 #newburger {
 	text-align: center;
 	border-radius: 5px;
@@ -46,7 +51,7 @@ ul {
 }
 
 #lefthead {
-    background-color: palevioletred;
+    background-color: rgb(75, 167, 115);
     color: black;
     text-align: center;
 	font-size: 1.2em;

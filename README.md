@@ -15,7 +15,8 @@ An app that allows you to add your favorite burgers and devour them1
         
 ## Installation
             
-clone repository to local machine.
+* clone repository to local machine
+* npm install express mysql express-handlebars
 
 ## Usage
 
