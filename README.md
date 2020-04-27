@@ -1,22 +1,32 @@
-# Eat-Da_Burger
+# Eat-Da-Burger
 
 ## Description
             
-An app that allows employers to view and manage their employees.
+An app that allows you to add your favorite burgers and devour them1
             
 ## Table of Contents
             
-[Installation](#Installation) | [Usage](#Usage) | [Contributing](#Contributing) | [License](#License) | [Test](#Test)
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [License](#License)
+* [Test](#Test)
+* [Contributing](#Contributing)
             
         
 ## Installation
             
 clone repository to local machine.
-            
+
 ## Usage
-            
-node server.js
-            
+
+* node.js
+* express NPM Package
+* nodemon
+* body-parser NPM Package 
+* path NPM Package
+* mySQL
+* handlebars
+* heroku-cli NPM Package          
             
 ## Contributing
             
