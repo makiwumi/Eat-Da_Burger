@@ -84,8 +84,22 @@ let orm = {
     
           callback(result);
         });
-      }
+    }
+    // Delete a burger from the db
+    deleteOne: function(table, condition, cb) {
+      let queryString = "DELETE FROM " + table;
+      queryString += " WHERE ";
+      queryString += condition;
 
+      console.log(queryString);
+
+      connection.query(queryString, function(err, result) {
+          if (err) {
+              throw err
+          }
+          cb(result);
+      });
+    } 
 }
 //export ORM object
 module.exports = orm;

@@ -41,7 +41,20 @@ router.get("/", function(request, response) {
       }
     });
   });
+  // Delete burger from db.
+  router.delete("/api/burgers/:id", function(request, response) {
+    let condition = "id = " + request.params.id;
+    console.log("condition", condition);
 
+    burger.deleteOne(condition, function(result) {
+      if (result.changedRows === 0) {
+          // If no rows were changed, then the ID must not exist, so 404.
+          return response.status(404).end();
+      } else {
+          response.status(200).end();
+      }
+  });
+});
 
 // exporting router
 
